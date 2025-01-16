@@ -27,6 +27,11 @@ void Game::processInput() {
             window.close();
         }
 
+        if (event.type == sf::Event::Resized) {
+            sf::FloatRect visibleArea(0, 0, event.size.width, event.size.height);
+            window.setView(sf::View(visibleArea));
+        }
+
         if (event.type == sf::Event::MouseButtonPressed) {
             if (event.mouseButton.button == sf::Mouse::Left) {
                 sf::Vector2f target(event.mouseButton.x, event.mouseButton.y);
@@ -51,7 +56,7 @@ void Game::update(float deltaTime) {
 }
 
 void Game::render() {
-    window.clear(sf::Color::Black);
+    window.clear(sf::Color::White);
 
     sf::CircleShape playerShape(10.f);
     playerShape.setFillColor(sf::Color::Green);
@@ -71,6 +76,7 @@ void Game::render() {
 void Game::spawnEnemy() {
     int x = std::rand() % 800;
     int y = std::rand() % 600;
+
     enemies.emplace_back(x, y);
 }
 

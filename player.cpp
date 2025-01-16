@@ -1,6 +1,4 @@
 #include "player.h"
-
-#include "player.h"
 #include <cmath>
 
 void Player::setTarget(const sf::Vector2f& target) {
