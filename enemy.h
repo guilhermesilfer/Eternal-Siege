@@ -11,7 +11,7 @@ public:
 private:
     float x;
     float y;
-    float speed = 100.f;
+    float speed = 50.f;
 };
 
 #endif

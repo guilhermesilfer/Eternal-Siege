@@ -1,7 +1,10 @@
 #include "enemy.h"
 #include <cmath>
 
-Enemy::Enemy(int initialX, int initialY) : x(static_cast<float>(initialX)), y(static_cast<float>(initialY)) {}
+Enemy::Enemy(int initialX, int initialY) {
+    x = static_cast<float>(initialX);
+    y = static_cast<float>(initialY);
+}
 
 void Enemy::moveTowards(int targetX, int targetY, float deltaTime) {
     float dx = targetX - x;
