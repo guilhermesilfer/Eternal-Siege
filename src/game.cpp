@@ -3,7 +3,7 @@
 #include <ctime>
 #include <iostream>
 
-Game::Game() : window(sf::VideoMode(1280, 800), "SFML Game"),
+Game::Game() : window(sf::VideoMode(1280, 800), "Eternal Siege"),
                spawnTimer(0),
                spawnInterval(0.5f)
 {
