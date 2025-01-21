@@ -3,9 +3,10 @@
 #include <ctime>
 #include <iostream>
 
-Game::Game()
-    : window(sf::VideoMode(800, 600), "SFML Game"), 
-      spawnTimer(0), spawnInterval(2.0f) {
+Game::Game() : window(sf::VideoMode(1280, 800), "SFML Game"),
+               spawnTimer(0),
+               spawnInterval(0.5f)
+{
     std::srand(static_cast<unsigned>(std::time(nullptr)));
     window.setFramerateLimit(60);
 }
