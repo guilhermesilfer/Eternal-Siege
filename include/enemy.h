@@ -8,9 +8,9 @@
 class Enemy : public Entity {
 public:
     //Enemy(int initialX, int initialY);
-    void processInput(sf::RenderWindow window);
+    void processInput(sf::RenderWindow& window);
     void update(float delta);
-    void render(sf::RenderWindow window);
+    void render(sf::RenderWindow& window);
 
 private:
     float speed = 50.f;

@@ -9,6 +9,8 @@ Game::Game() : window(sf::VideoMode(1280, 800), "Eternal Siege"),
 {
     std::srand(static_cast<unsigned>(std::time(nullptr)));
     window.setFramerateLimit(60);
+    Player* player = new Player;
+    entities.push_back(player);
 }
 
 void Game::run() {
@@ -50,8 +52,8 @@ void Game::update(float delta) {
 void Game::render() {
     window.clear(sf::Color::White);
 
-    for (Entity& entity : entities) {
-        entity.render(window);
+    for (Entity* entity : entities) {
+        entity->render(window);
     }
 
 //for (const auto& enemy : enemies) {

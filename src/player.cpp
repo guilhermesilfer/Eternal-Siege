@@ -1,7 +1,7 @@
 #include "player.h"
 #include <cmath>
 
-void Player::processInput(sf::RenderWindow window) {
+void Player::processInput(sf::RenderWindow& window) {
     sf::Event event;
     while (window.pollEvent(event)) {
         if (event.type == sf::Event::MouseButtonPressed) {
@@ -23,7 +23,7 @@ void Player::update(float delta) {
     }
 }
 
-void Player::render(sf::RenderWindow window) {
+void Player::render(sf::RenderWindow& window) {
     sf::CircleShape playerShape(10.f);
     playerShape.setFillColor(sf::Color::Green);
     playerShape.setPosition(getX(), getY());
