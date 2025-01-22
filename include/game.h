@@ -13,7 +13,7 @@ public:
 
 private:
     void processInput();
-    void update(float deltaTime);
+    void update(float delta);
     void render();
     void spawnEnemy();
 

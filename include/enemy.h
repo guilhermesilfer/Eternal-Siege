@@ -8,7 +8,7 @@
 class Enemy : public Entity {
 public:
     //Enemy(int initialX, int initialY);
-    void processInput(sf::RenderWindow& window);
+    void processInput(sf::Event& event);
     void update(float delta);
     void render(sf::RenderWindow& window);
 

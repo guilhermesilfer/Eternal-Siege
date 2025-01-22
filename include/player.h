@@ -7,10 +7,9 @@
 
 class Player : public Entity {
 public:
-    void processInput(sf::RenderWindow& window);
+    void processInput(sf::Event& event);
     void update(float delta);
     void render(sf::RenderWindow& window);
-    void moveTowardsMouse(float deltaTime);
 
 private:
     sf::Vector2f targetPosition;

@@ -1,14 +1,14 @@
-#include "player.h"
+#include <iostream>
 #include <cmath>
 
-void Player::processInput(sf::RenderWindow& window) {
-    sf::Event event;
-    while (window.pollEvent(event)) {
-        if (event.type == sf::Event::MouseButtonPressed) {
-            if (event.mouseButton.button == sf::Mouse::Left) {
-                sf::Vector2f target(event.mouseButton.x, event.mouseButton.y);
-                targetPosition = target;
-            }
+#include "player.h"
+
+void Player::processInput(sf::Event& event) {
+    std::cout << "banana" << std::endl;
+    if (event.type == sf::Event::MouseButtonPressed) {
+        if (event.mouseButton.button == sf::Mouse::Left) {
+            sf::Vector2f target(event.mouseButton.x, event.mouseButton.y);
+            targetPosition = target;
         }
     }
 }

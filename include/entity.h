@@ -5,7 +5,7 @@
 
 class Entity {
 public:
-    virtual void processInput(sf::RenderWindow& window) = 0;
+    virtual void processInput(sf::Event& event) = 0;
     virtual void update(float delta) = 0;
     virtual void render(sf::RenderWindow& window) = 0;
     float getX() const;

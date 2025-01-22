@@ -9,7 +9,7 @@ Game::Game() : window(sf::VideoMode(1280, 800), "Eternal Siege"),
 {
     std::srand(static_cast<unsigned>(std::time(nullptr)));
     window.setFramerateLimit(60);
-    Player* player = new Player;
+    Player* player = new Player();
     entities.push_back(player);
 }
 
@@ -26,6 +26,10 @@ void Game::run() {
 void Game::processInput() {
     sf::Event event;
     while (window.pollEvent(event)) {
+        for (Entity* entity : entities) {
+            entity->processInput(event);
+        }
+
         if (event.type == sf::Event::Closed) {
             window.close();
         }
@@ -44,9 +48,9 @@ void Game::update(float delta) {
         spawnTimer = 0;
     }
 
-    //for (auto& enemy : enemies) {
-    //    enemy.moveTowards(player.getX(), player.getY(), delta);
-    //}
+    for (Entity* entity : entities) {
+        entity->update(delta);
+    }
 }
 
 void Game::render() {
