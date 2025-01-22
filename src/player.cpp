@@ -1,10 +1,9 @@
+#include "player.h"
+#include "game.h"
 #include <iostream>
 #include <cmath>
 
-#include "player.h"
-
 void Player::processInput(sf::Event& event) {
-    std::cout << "banana" << std::endl;
     if (event.type == sf::Event::MouseButtonPressed) {
         if (event.mouseButton.button == sf::Mouse::Left) {
             sf::Vector2f target(event.mouseButton.x, event.mouseButton.y);
@@ -13,7 +12,7 @@ void Player::processInput(sf::Event& event) {
     }
 }
 
-void Player::update(float delta) {
+void Player::update(float delta, Game& game) {
     sf::Vector2f direction = targetPosition - position;
     float distance = std::sqrt(direction.x * direction.x + direction.y * direction.y);
 

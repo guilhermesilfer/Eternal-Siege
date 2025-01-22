@@ -1,7 +1,9 @@
-#include "game.h"
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
+#include "game.h"
+#include "entity.h"
+#include "player.h"
 
 Game::Game() : window(sf::VideoMode(1280, 800), "Eternal Siege"),
                spawnTimer(0),
@@ -9,14 +11,13 @@ Game::Game() : window(sf::VideoMode(1280, 800), "Eternal Siege"),
 {
     std::srand(static_cast<unsigned>(std::time(nullptr)));
     window.setFramerateLimit(60);
-    Player* player = new Player();
+    player = new Player();
     entities.push_back(player);
 }
 
 void Game::run() {
     while (window.isOpen()) {
         float delta = clock.restart().asSeconds();
-
         processInput();
         update(delta);
         render();
@@ -49,7 +50,7 @@ void Game::update(float delta) {
     }
 
     for (Entity* entity : entities) {
-        entity->update(delta);
+        entity->update(delta, *this);
     }
 }
 
@@ -68,5 +69,9 @@ void Game::render() {
 //}
 
     window.display();
+}
+
+Player* Game::getPlayer() {
+    return player;
 }
 

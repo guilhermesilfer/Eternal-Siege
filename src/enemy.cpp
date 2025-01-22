@@ -1,22 +1,23 @@
 #include "enemy.h"
+#include "game.h"
+#include "player.h"
 #include <cmath>
 
-//Enemy::Enemy(int initialX, int initialY) : Entity() {
-//    //setX(static_cast<float>(initialX));
-//    //setY(static_cast<float>(initialY));
-//}
+void Enemy::processInput(sf::Event& event) {}
 
-//void Enemy::moveTowards(int targetX, int targetY, float delta) {
-//    float dx = targetX - x;
-//    float dy = targetY - y;
-//
-//    float distance = std::sqrt(dx * dx + dy * dy);
-//
-//    if (distance > 0.0f) {
-//        dx /= distance;
-//        dy /= distance;
-//
-//        x += dx * speed * delta;
-//        y += dy * speed * delta;
-//    }
-//}
+void Enemy::update(float delta, Game& game) {
+    Player* player = game.getPlayer();
+    int targetX = player->getX();
+    int targetY = player->getY();
+    float dx = targetX - position.x;
+    float dy = targetY - position.y;
+    float distance = std::sqrt(dx * dx + dy * dy);
+    if (distance > 0.0f) {
+        dx /= distance;
+        dy /= distance;
+        position.x += dx * speed * delta;
+        position.y += dy * speed * delta;
+    }
+}
+
+void Enemy::render(sf::RenderWindow& window) {}

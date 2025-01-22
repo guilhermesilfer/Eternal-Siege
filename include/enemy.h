@@ -2,14 +2,13 @@
 #define ENEMY_H
 
 #include <SFML/Graphics.hpp>
-
 #include "entity.h"
+#include "game.h"
 
 class Enemy : public Entity {
 public:
-    //Enemy(int initialX, int initialY);
     void processInput(sf::Event& event);
-    void update(float delta);
+    void update(float delta, Game& game);
     void render(sf::RenderWindow& window);
 
 private:

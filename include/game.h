@@ -3,13 +3,14 @@
 
 #include <SFML/Graphics.hpp>
 #include <vector>
-#include "player.h"
-#include "enemy.h"
+class Entity;
+class Player;
 
 class Game {
 public:
     Game();
     void run();
+    Player* getPlayer();
 
 private:
     void processInput();
@@ -20,8 +21,10 @@ private:
     sf::RenderWindow window;
     sf::Clock clock;
     std::vector<Entity*> entities;
+    Player* player;
     float spawnTimer;
     float spawnInterval;
+
 };
 
 #endif
