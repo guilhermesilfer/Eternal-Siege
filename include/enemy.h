@@ -1,16 +1,18 @@
 #ifndef ENEMY_H
 #define ENEMY_H
 
-class Enemy {
+#include <SFML/Graphics.hpp>
+
+#include "entity.h"
+
+class Enemy : public Entity {
 public:
-    Enemy(int initialX, int initialY);
-    void moveTowards(int targetX, int targetY, float deltaTime);
-    int getX() const;
-    int getY() const;
+    //Enemy(int initialX, int initialY);
+    void processInput(sf::RenderWindow window);
+    void update(float delta);
+    void render(sf::RenderWindow window);
 
 private:
-    float x;
-    float y;
     float speed = 50.f;
 };
 

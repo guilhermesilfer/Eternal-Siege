@@ -1,17 +1,18 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include <SFML/System.hpp>
+#include <SFML/Graphics.hpp>
 
-class Player {
+#include "entity.h"
+
+class Player : public Entity {
 public:
-    void setTarget(const sf::Vector2f& target);
+    void processInput(sf::RenderWindow window);
+    void update(float delta);
+    void render(sf::RenderWindow window);
     void moveTowardsMouse(float deltaTime);
-    float getX() const;
-    float getY() const;
 
 private:
-    sf::Vector2f position;
     sf::Vector2f targetPosition;
     float speed = 200.f;
 };

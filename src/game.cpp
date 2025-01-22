@@ -13,10 +13,10 @@ Game::Game() : window(sf::VideoMode(1280, 800), "Eternal Siege"),
 
 void Game::run() {
     while (window.isOpen()) {
-        float deltaTime = clock.restart().asSeconds();
+        float delta = clock.restart().asSeconds();
 
         processInput();
-        update(deltaTime);
+        update(delta);
         render();
     }
 }
@@ -32,52 +32,35 @@ void Game::processInput() {
             sf::FloatRect visibleArea(0, 0, event.size.width, event.size.height);
             window.setView(sf::View(visibleArea));
         }
-
-        if (event.type == sf::Event::MouseButtonPressed) {
-            if (event.mouseButton.button == sf::Mouse::Left) {
-                sf::Vector2f target(event.mouseButton.x, event.mouseButton.y);
-                player.setTarget(target);
-            }
-        }
     }
 }
 
-void Game::update(float deltaTime) {
-    spawnTimer += deltaTime;
+void Game::update(float delta) {
+    spawnTimer += delta;
     if (spawnTimer >= spawnInterval) {
-        spawnEnemy();
+        //spawnEnemy();
         spawnTimer = 0;
     }
 
-    player.moveTowardsMouse(deltaTime);
-
-    for (auto& enemy : enemies) {
-        enemy.moveTowards(player.getX(), player.getY(), deltaTime);
-    }
+    //for (auto& enemy : enemies) {
+    //    enemy.moveTowards(player.getX(), player.getY(), delta);
+    //}
 }
 
 void Game::render() {
     window.clear(sf::Color::White);
 
-    sf::CircleShape playerShape(10.f);
-    playerShape.setFillColor(sf::Color::Green);
-    playerShape.setPosition(player.getX(), player.getY());
-    window.draw(playerShape);
-
-    for (const auto& enemy : enemies) {
-        sf::CircleShape enemyShape(10.f);
-        enemyShape.setFillColor(sf::Color::Red);
-        enemyShape.setPosition(enemy.getX(), enemy.getY());
-        window.draw(enemyShape);
+    for (Entity& entity : entities) {
+        entity.render(window);
     }
 
+//for (const auto& enemy : enemies) {
+//    sf::CircleShape enemyShape(10.f);
+//    enemyShape.setFillColor(sf::Color::Red);
+//    enemyShape.setPosition(enemy.getX(), enemy.getY());
+//    window.draw(enemyShape);
+//}
+
     window.display();
-}
-
-void Game::spawnEnemy() {
-    int x = std::rand() % 800;
-    int y = std::rand() % 600;
-
-    enemies.emplace_back(x, y);
 }
 

@@ -20,7 +20,7 @@ private:
     sf::RenderWindow window;
     sf::Clock clock;
     Player player;
-    std::vector<Enemy> enemies;
+    std::vector<Entity> entities;
     float spawnTimer;
     float spawnInterval;
 };
