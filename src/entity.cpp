@@ -1,5 +1,9 @@
 #include "entity.h"
 
+Entity::Entity() {}
+
+Entity::Entity(sf::Vector2f pos) : position(pos) {}
+
 float Entity::getX() const {
     return position.x;
 }

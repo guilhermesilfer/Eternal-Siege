@@ -4,11 +4,7 @@
 #include <iostream>
 #include <cmath>
 
-Projectile::Projectile(sf::Vector2f pos) {
-    std::cout << pos.x << " " << pos.y << std::endl;
-    position.x = pos.x;
-    position.y = pos.y;
-}
+Projectile::Projectile(sf::Vector2f pos) : Entity(pos) {}
 
 void Projectile::processInput(sf::Event& event, Game& game) {
 }

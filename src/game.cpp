@@ -7,12 +7,13 @@
 #include "enemy.h"
 
 Game::Game() : window(sf::VideoMode(1280, 800), "Eternal Siege"),
+               entities(),
+               player(new Player()),
                spawnTimer(0),
                spawnInterval(4.0f)
 {
     std::srand(static_cast<unsigned>(std::time(nullptr)));
     window.setFramerateLimit(60);
-    player = new Player();
     entities.push_back(player);
 }
 
@@ -28,42 +29,32 @@ void Game::run() {
 void Game::processInput() {
     sf::Event event;
     while (window.pollEvent(event)) {
-        // processa o input das entidades
-        for (Entity* entity : entities) {
-            std::cout << entities.size() << std::endl;
-            std::cout << entities.size() << std::endl;
-            std::cout << entities.size() << std::endl;
-            std::cout << entity << std::endl;
-//            std::cout << entity << std::endl;
-//            std::cout << entity << std::endl;
-//            std::cout << entity << std::endl;
-            entity->processInput(event, *this);
-            std::cout << "balls" << std::endl;
-            std::cout << "balls" << std::endl;
-        }
-
         if (event.type == sf::Event::Closed) {
             window.close();
         }
-
         if (event.type == sf::Event::Resized) {
             sf::FloatRect visibleArea(0, 0, event.size.width, event.size.height);
             window.setView(sf::View(visibleArea));
+        }
+
+        // processa o input das entidades
+        for (Entity* entity : std::vector<Entity*>(entities)) {
+            entity->processInput(event, *this);
         }
     }
 }
 
 void Game::update(float delta) {
     // spawn dos inimigos
-    //spawnTimer += delta;
-    //if (spawnTimer >= spawnInterval) {
-    //    Enemy* enemy = new Enemy();
-    //    entities.push_back(enemy);
-    //    spawnTimer = 0;
-    //}
+    spawnTimer += delta;
+    if (spawnTimer >= spawnInterval) {
+        Enemy* enemy = new Enemy();
+        entities.push_back(enemy);
+        spawnTimer = 0;
+    }
 
     // update de todas as entidades
-    for (Entity* entity : entities) {
+    for (Entity* entity : std::vector<Entity*>(entities)) {
         entity->update(delta, *this);
     }
 }
@@ -71,7 +62,7 @@ void Game::update(float delta) {
 void Game::render() {
     window.clear(sf::Color::White);
 
-    for (Entity* entity : entities) {
+    for (Entity* entity : std::vector<Entity*>(entities)) {
         entity->render(window, *this);
     }
 
@@ -81,6 +72,10 @@ void Game::render() {
 void Game::spawnEntity(Entity* entity) {
     entities.push_back(entity);
 }
+
+//void Game::despawnEntity(Entity* entity) {
+//   /* ... */
+//}
 
 Player* Game::getPlayer() {
     return player;

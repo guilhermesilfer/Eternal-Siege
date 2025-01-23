@@ -10,9 +10,6 @@ Player::Player() {
 }
 
 void Player::processInput(sf::Event& event, Game& game) {
-    std::cout << "sus" << std::endl;
-    std::cout << "sus" << std::endl;
-    std::cout << "sus" << std::endl;
     if (event.type == sf::Event::MouseButtonPressed) {
         if (event.mouseButton.button == sf::Mouse::Right) {
             sf::Vector2f target(event.mouseButton.x, event.mouseButton.y);
@@ -21,18 +18,7 @@ void Player::processInput(sf::Event& event, Game& game) {
 
         if (event.mouseButton.button == sf::Mouse::Left) {
             Projectile* projectile = new Projectile(position);
-            std::cout << projectile->position.x << " " << projectile->position.y << std::endl;
             game.spawnEntity(projectile);
-
-            Projectile* pee = new Projectile(sf::Vector2f(800, 800) );
-            std::cout << pee->position.x << " " << pee->position.y << std::endl;
-            game.spawnEntity(pee);
-
-            Projectile* poo = new Projectile(sf::Vector2f(800, 200) );
-            std::cout << poo->position.x << " " << poo->position.y << std::endl;
-            game.spawnEntity(poo);
-
-            //game.despawnEntity();
         }
     }
 }
