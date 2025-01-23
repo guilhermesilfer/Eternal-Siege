@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include "entity.h"
 #include "game.h"
+#include "hitbox.h"
 
 class Player : public Entity {
 public:
@@ -13,12 +14,17 @@ public:
     void render(sf::RenderWindow& window, Game& game);
     int getAmmo();
     int getHealth();
+    int getKills();
+    int loseHealth(int amount);
+    int increaseKills(int amount);
+    Hitbox hitbox;
 
 private:
     sf::Vector2f targetPosition;
     float speedPlayer = 200.f;
     int health;
     int ammo;
+    int kills;
 };
 
 #endif

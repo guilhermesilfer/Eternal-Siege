@@ -14,6 +14,7 @@ public:
 
 private:
     int ammo;
+    int health;
 };
 
 #endif

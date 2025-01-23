@@ -20,10 +20,18 @@ void Projectile::update(float delta, Game& game) {
         //game.despawnEntity(this);
     }
 
+    Player* player = game.getPlayer();
+    if (player->hitbox.collided(this->hitbox)) {
+        std::cout << "REEEEEEEEEEEEEEE" << std::endl;
+        player->loseHealth(1);
+        game.despawnEntity(this);
+    }
+
     std::vector<Enemy*> enemies = game.getEnemies();
     for (Enemy* enemy : enemies) {
         if (enemy->hitbox.collided(this->hitbox)) {
             std::cout << "AAAAAAAAAAAAAAAA" << std::endl;
+            player->increaseKills(1);
             game.despawnEntity(enemy);
             game.despawnEntity(this);
         }
@@ -45,3 +53,4 @@ sf::Vector2f Projectile::setTargetPosition(float x, float y) {
     targetPosition.y = y;
     return targetPosition;
 }
+

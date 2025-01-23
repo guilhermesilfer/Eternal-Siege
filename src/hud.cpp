@@ -11,6 +11,7 @@ void Hud::processInput(sf::Event& event, Game& game) {}
 void Hud::update(float delta, Game& game) {
     Player* player = game.getPlayer();
     ammo = player->getAmmo();
+    health = player->getHealth();
 }
 
 void Hud::render(sf::RenderWindow& window, Game& game) {
@@ -40,9 +41,7 @@ void Hud::render(sf::RenderWindow& window, Game& game) {
     window.draw(leftAmmo);
 
     // desenha a vida restante
-    Player* player = game.getPlayer();
-    int healthPlayer = player->getHealth();
-    std::string healthText = std::to_string(healthPlayer);
+    std::string healthText = std::to_string(health);
     sf::Text leftHealth;
     leftHealth.setFont(font);
     leftHealth.setString("Health: " + healthText);
