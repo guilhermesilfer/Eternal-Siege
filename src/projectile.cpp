@@ -29,7 +29,9 @@ void Projectile::update(float delta, Game& game) {
 }
 
 void Projectile::render(sf::RenderWindow& window, Game& game) {
-    sf::CircleShape projectileShape(3.0f);
+    sf::CircleShape projectileShape;
+    projectileShape.setRadius(3);
+    projectileShape.setOrigin(projectileShape.getRadius(), projectileShape.getRadius());
     projectileShape.setFillColor(sf::Color::Blue);
     projectileShape.setPosition(position.x, position.y);
     window.draw(projectileShape);

@@ -46,7 +46,9 @@ void Enemy::update(float delta, Game& game) {
 }
 
 void Enemy::render(sf::RenderWindow& window, Game& game) {
-    sf::CircleShape enemyShape(10.f);
+    sf::CircleShape enemyShape;
+    enemyShape.setRadius(10);
+    enemyShape.setOrigin(enemyShape.getRadius(), enemyShape.getRadius());
     enemyShape.setFillColor(sf::Color::Red);
     enemyShape.setPosition(getX(), getY());
     window.draw(enemyShape);
