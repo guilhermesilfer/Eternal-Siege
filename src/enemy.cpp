@@ -1,10 +1,13 @@
 #include "enemy.h"
 #include "game.h"
 #include "player.h"
+#include "projectile.h"
 #include <cmath>
 #include <cstdlib>
 
 Enemy::Enemy() :
+    shootTimer(0),
+    shootInterval(2.0f),
     hitbox(this, 10.f, 10.f)
 {
     // sistema de spawn dos inimigos
@@ -44,6 +47,16 @@ void Enemy::update(float delta, Game& game) {
         dy /= distance;
         position.x += dx * speed * delta;
         position.y += dy * speed * delta;
+    }
+
+    // spawn dos projeteis
+    shootTimer += clock.restart().asSeconds();
+    if (shootTimer >= shootInterval) {
+        Projectile* projectile = new Projectile(position);
+        projectile->setTargetPosition(player->getX(), player->getY());
+        projectile->direction = projectile->targetPosition - position;
+        game.spawnEntity(projectile);
+        shootTimer = 0;
     }
 }
 

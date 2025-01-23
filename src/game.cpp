@@ -75,12 +75,18 @@ void Game::render() {
 }
 
 void Game::spawnEntity(Entity* entity) {
-    entities.push_back(entity);
+    auto idx = find(entities.begin(), entities.end(), entity);
+    if (idx == entities.end()) {
+        entities.push_back(entity);
+    }
 }
 
-//void Game::despawnEntity(Entity* entity) {
-//   /* ... */
-//}
+void Game::despawnEntity(Entity* entity) {
+    auto idx = find(entities.begin(), entities.end(), entity);
+    if (idx != entities.end()) {
+        entities.erase(idx);
+    }
+}
 
 Player* Game::getPlayer() {
     return player;

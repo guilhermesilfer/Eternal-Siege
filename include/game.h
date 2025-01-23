@@ -13,6 +13,7 @@ public:
     Game();
     void run();
     void spawnEntity(Entity* entity);
+    void despawnEntity(Entity* entity);
     Player* getPlayer();
     std::vector<Enemy*> getEnemies();
 

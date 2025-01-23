@@ -24,8 +24,8 @@ void Projectile::update(float delta, Game& game) {
     for (Enemy* enemy : enemies) {
         if (enemy->hitbox.collided(this->hitbox)) {
             std::cout << "AAAAAAAAAAAAAAAA" << std::endl;
-            //game.despawnEntity(enemy);
-            //game.despawnEntity(this);
+            game.despawnEntity(enemy);
+            game.despawnEntity(this);
         }
     }
 }

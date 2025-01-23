@@ -25,9 +25,9 @@ bool Hitbox::collided(Hitbox& h) {
 }
 
 void Hitbox::debugRender(sf::RenderWindow& window) {
-    sf::CircleShape box;
-    box.setRadius(width);
-    box.setOrigin(box.getRadius(), box.getRadius());
+    sf::RectangleShape box;
+    box.setSize(sf::Vector2f(width, height));
+    box.setOrigin(halfWidth, halfHeight);
     box.setFillColor(sf::Color::Yellow);
     box.setPosition(centerX(), centerY());
     window.draw(box);
