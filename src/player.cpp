@@ -7,7 +7,8 @@
 
 Player::Player() :
     Entity(sf::Vector2f(640, 400)),
-    targetPosition(sf::Vector2f(640, 400))
+    targetPosition(sf::Vector2f(640, 400)),
+    projectiles(100)
 {}
 
 void Player::processInput(sf::Event& event, Game& game) {
@@ -19,11 +20,14 @@ void Player::processInput(sf::Event& event, Game& game) {
 
         // spawn dos projeteis
         if (event.mouseButton.button == sf::Mouse::Left) {
-            Projectile* projectile = new Projectile(position);
-            projectile->setTargetPosition(event.mouseButton.x, event.mouseButton.y);
-            projectile->direction = projectile->targetPosition - position;
-            std::cout << projectile->direction.x << projectile->direction.y << std::endl;
-            game.spawnEntity(projectile);
+            if (projectiles > 0) {
+                Projectile* projectile = new Projectile(position);
+                projectile->setTargetPosition(event.mouseButton.x, event.mouseButton.y);
+                projectile->direction = projectile->targetPosition - position;
+                std::cout << projectile->direction.x << projectile->direction.y << std::endl;
+                game.spawnEntity(projectile);
+                projectiles--;
+            }
         }
     }
 }

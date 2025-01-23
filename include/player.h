@@ -15,6 +15,7 @@ public:
 private:
     sf::Vector2f targetPosition;
     float speedPlayer = 200.f;
+    int projectiles;
 };
 
 #endif
