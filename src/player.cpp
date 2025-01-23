@@ -46,7 +46,9 @@ void Player::render(sf::RenderWindow& window, Game& game) {
     sf::CircleShape playerShape;
     playerShape.setRadius(10);
     playerShape.setOrigin(playerShape.getRadius(), playerShape.getRadius());
-    playerShape.setFillColor(sf::Color::Green);
+    playerShape.setFillColor(sf::Color::Cyan);
+    playerShape.setOutlineColor(sf::Color::Blue);
+    playerShape.setOutlineThickness(2.f);
     playerShape.setPosition(getX(), getY());
     window.draw(playerShape);
 }

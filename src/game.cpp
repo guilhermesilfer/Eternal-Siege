@@ -6,6 +6,7 @@
 #include "player.h"
 #include "enemy.h"
 #include "hud.h"
+#include "base.h"
 
 Game::Game() :
     window(sf::VideoMode(1280, 800), "Eternal Siege"),
@@ -15,11 +16,17 @@ Game::Game() :
     spawnInterval(4.0f)
 {
     std::srand(static_cast<unsigned>(std::time(nullptr)));
+
     window.setFramerateLimit(60);
-    spawnEntity(player);
 
     Hud* hud = new Hud();
     spawnEntity(hud);
+
+    Base* base = new Base();
+    spawnEntity(base);
+
+    spawnEntity(player);
+
 }
 
 void Game::run() {
