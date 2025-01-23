@@ -1,5 +1,6 @@
 #include "projectile.h"
 #include "player.h"
+#include "base.h"
 #include "enemy.h"
 #include "game.h"
 #include <iostream>
@@ -17,13 +18,21 @@ void Projectile::update(float delta, Game& game) {
     position += direction * speedProjectile * delta;
 
     if (position.x < -100 || position.y < -100 || position.x > 1300 || position.y > 900) {
-        //game.despawnEntity(this);
+        game.despawnEntity(this);
+        std::cout << "caiu pra fora" << std::endl;
     }
 
     Player* player = game.getPlayer();
     if (player->hitbox.collided(this->hitbox)) {
         std::cout << "REEEEEEEEEEEEEEE" << std::endl;
         player->loseHealth(1);
+        game.despawnEntity(this);
+    }
+
+    Base* base = game.getBase();
+    if (base->hitbox.collided(this->hitbox)) {
+        std::cout << "IEHHHHHHHHHHHHHHH" << std::endl;
+        base->loseHealth(5);
         game.despawnEntity(this);
     }
 

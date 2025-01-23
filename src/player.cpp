@@ -16,12 +16,13 @@ Player::Player() :
 
 void Player::processInput(sf::Event& event, Game& game) {
     if (event.type == sf::Event::MouseButtonPressed) {
+        // para movimentar o player
         if (event.mouseButton.button == sf::Mouse::Right) {
             sf::Vector2f target(event.mouseButton.x, event.mouseButton.y);
             targetPosition = target;
         }
 
-        // spawn dos projeteis
+        // para spawn dos projeteis
         if (event.mouseButton.button == sf::Mouse::Left && ammo > 0) {
             Projectile* projectile = new Projectile(position, {'E'});
             projectile->setTargetPosition(event.mouseButton.x, event.mouseButton.y);
@@ -45,6 +46,7 @@ void Player::update(float delta, Game& game) {
 }
 
 void Player::render(sf::RenderWindow& window, Game& game) {
+    // redenrização do player
     sf::CircleShape playerShape;
     playerShape.setRadius(10);
     playerShape.setOrigin(playerShape.getRadius(), playerShape.getRadius());

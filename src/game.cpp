@@ -12,6 +12,7 @@ Game::Game() :
     window(sf::VideoMode(1280, 800), "Eternal Siege"),
     entities(),
     player(new Player()),
+    base(new Base()),
     spawnTimer(0),
     spawnInterval(4.0f)
 {
@@ -22,11 +23,9 @@ Game::Game() :
     Hud* hud = new Hud();
     spawnEntity(hud);
 
-    Base* base = new Base();
-    spawnEntity(base);
-
     spawnEntity(player);
 
+    spawnEntity(base);
 }
 
 void Game::run() {
@@ -97,6 +96,10 @@ void Game::despawnEntity(Entity* entity) {
 
 Player* Game::getPlayer() {
     return player;
+}
+
+Base* Game::getBase() {
+    return base;
 }
 
 std::vector<Enemy*> Game::getEnemies() {

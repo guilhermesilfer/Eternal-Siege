@@ -23,8 +23,7 @@ void Hud::render(sf::RenderWindow& window, Game& game) {
     window.draw(rectangleShape);
 
     sf::Font font;
-    if (!font.loadFromFile("fonts/PressStart.ttf"))
-    {
+    if (!font.loadFromFile("fonts/PressStart.ttf")) {
         exit(1);
     }
 

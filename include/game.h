@@ -6,6 +6,7 @@
 
 class Entity;
 class Player;
+class Base;
 class Enemy;
 
 class Game {
@@ -15,6 +16,7 @@ public:
     void spawnEntity(Entity* entity);
     void despawnEntity(Entity* entity);
     Player* getPlayer();
+    Base* getBase();
     std::vector<Enemy*> getEnemies();
 
 private:
@@ -27,6 +29,7 @@ private:
     sf::Clock clock;
     std::vector<Entity*> entities;
     Player* player;
+    Base* base;
     float spawnTimer;
     float spawnInterval;
 

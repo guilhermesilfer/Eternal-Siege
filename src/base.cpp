@@ -4,14 +4,14 @@
 #include "game.h"
 
 Base::Base() :
-    Entity(sf::Vector2f(640, 400))
+    Entity(sf::Vector2f(640, 400)),
+    hitbox(this, 250.f, 500.f, {'P'}),
+    health(100)
 {}
 
-void Base::processInput(sf::Event& event, Game& game) {
-}
+void Base::processInput(sf::Event& event, Game& game) {}
 
-void Base::update(float delta, Game& game) {
-}
+void Base::update(float delta, Game& game) {}
 
 void Base::render(sf::RenderWindow& window, Game& game) {
     sf::RectangleShape baseShape;
@@ -22,5 +22,10 @@ void Base::render(sf::RenderWindow& window, Game& game) {
     baseShape.setOutlineThickness(10);
     baseShape.setPosition(getX(), getY());
     window.draw(baseShape);
+}
+
+int Base::loseHealth(int amount) {
+    health -= amount;
+    return health;
 }
 
