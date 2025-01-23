@@ -4,7 +4,9 @@
 #include <cmath>
 #include <cstdlib>
 
-Enemy::Enemy() {
+Enemy::Enemy() :
+    hitbox(this, 10.f, 10.f)
+{
     // sistema de spawn dos inimigos
 
     int axisDice = std::rand() % 2;
@@ -52,4 +54,5 @@ void Enemy::render(sf::RenderWindow& window, Game& game) {
     enemyShape.setFillColor(sf::Color::Red);
     enemyShape.setPosition(getX(), getY());
     window.draw(enemyShape);
+    hitbox.debugRender(window);
 }

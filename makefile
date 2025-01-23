@@ -17,7 +17,9 @@ SRC = $(wildcard $(SRC_DIR)/*.cpp)
 OBJ = $(SRC:$(SRC_DIR)/%.cpp=$(BIN_DIR)/%.o)
 EXE = $(BIN_DIR)/Eternal_Siege
 
-install: setup $(EXE)
+install: clean $(EXE)
+
+fast: setup $(EXE)
 
 clean: setup
 	echo -n ===CLEANING UP ' '

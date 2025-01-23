@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "entity.h"
+#include "hitbox.h"
 #include "game.h"
 
 class Projectile : public Entity {
@@ -14,6 +15,7 @@ public:
     sf::Vector2f setTargetPosition(float x, float y);
     sf::Vector2f direction;
     sf::Vector2f targetPosition;
+    Hitbox hitbox;
 
 private:
     float speedProjectile = 500.f;

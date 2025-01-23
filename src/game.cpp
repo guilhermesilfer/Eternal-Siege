@@ -6,11 +6,12 @@
 #include "player.h"
 #include "enemy.h"
 
-Game::Game() : window(sf::VideoMode(1280, 800), "Eternal Siege"),
-               entities(),
-               player(new Player()),
-               spawnTimer(0),
-               spawnInterval(4.0f)
+Game::Game() :
+    window(sf::VideoMode(1280, 800), "Eternal Siege"),
+    entities(),
+    player(new Player()),
+    spawnTimer(0),
+    spawnInterval(4.0f)
 {
     std::srand(static_cast<unsigned>(std::time(nullptr)));
     window.setFramerateLimit(60);
@@ -81,3 +82,12 @@ Player* Game::getPlayer() {
     return player;
 }
 
+std::vector<Enemy*> Game::getEnemies() {
+    std::vector<Enemy*> enemies;
+    for (Entity* entity : std::vector<Entity*>(entities)) {
+        if (dynamic_cast<Enemy*>(entity) != nullptr) {
+            enemies.push_back(static_cast<Enemy*>(entity));
+        }
+    }
+    return enemies;
+}

@@ -3,15 +3,18 @@
 
 #include <SFML/Graphics.hpp>
 #include <vector>
+
 class Entity;
 class Player;
+class Enemy;
 
 class Game {
 public:
     Game();
     void run();
-    Player* getPlayer();
     void spawnEntity(Entity* entity);
+    Player* getPlayer();
+    std::vector<Enemy*> getEnemies();
 
 private:
     void processInput();

@@ -5,10 +5,10 @@
 #include <cstdlib>
 #include <cmath>
 
-Player::Player() {
-    position = sf::Vector2f(640, 400);
-    targetPosition = sf::Vector2f(640, 400);
-}
+Player::Player() :
+    Entity(sf::Vector2f(640, 400)),
+    targetPosition(sf::Vector2f(640, 400))
+{}
 
 void Player::processInput(sf::Event& event, Game& game) {
     if (event.type == sf::Event::MouseButtonPressed) {
