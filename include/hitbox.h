@@ -7,9 +7,10 @@
 class Hitbox {
 private:
     Entity* parent;
+    std::vector<char> layers;
 
 public:
-    Hitbox(Entity* parent, float height, float width);
+    Hitbox(Entity* parent, float height, float width, std::vector<char> layers);
     float height;
     float width;
     float halfHeight;

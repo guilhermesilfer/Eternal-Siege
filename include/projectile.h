@@ -8,10 +8,10 @@
 
 class Projectile : public Entity {
 public:
+    Projectile(sf::Vector2f pos, std::vector<char> layers);
     void processInput(sf::Event& event, Game& game);
     void update(float delta, Game& game);
     void render(sf::RenderWindow& window, Game& game);
-    Projectile(sf::Vector2f pos);
     sf::Vector2f setTargetPosition(float x, float y);
     sf::Vector2f direction;
     sf::Vector2f targetPosition;

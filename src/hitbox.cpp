@@ -3,8 +3,9 @@
 #include <iostream>
 #include <cmath>
 
-Hitbox::Hitbox(Entity* p, float h, float w) :
+Hitbox::Hitbox(Entity* p, float h, float w, std::vector<char> l) :
     parent(p),
+    layers(l),
     height(h),
     width(w),
     halfHeight(h/2.0),
@@ -20,8 +21,15 @@ float Hitbox::centerY() {
 }
 
 bool Hitbox::collided(Hitbox& h) {
-    return (fabsf(centerX() - h.centerX()) <= (halfWidth + h.halfWidth)) &&
-           (fabsf(centerY() - h.centerY()) <= (halfHeight + h.halfHeight));
+    for (auto l1 : layers) {
+        for (auto l2 : h.layers) {
+            if (l1 == l2) {
+                return (fabsf(centerX() - h.centerX()) <= (halfWidth + h.halfWidth)) &&
+                    (fabsf(centerY() - h.centerY()) <= (halfHeight + h.halfHeight));
+            }
+        }
+    }
+    return false;
 }
 
 void Hitbox::debugRender(sf::RenderWindow& window) {

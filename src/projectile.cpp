@@ -5,9 +5,9 @@
 #include <iostream>
 #include <cmath>
 
-Projectile::Projectile(sf::Vector2f pos) :
+Projectile::Projectile(sf::Vector2f pos, std::vector<char> layers) :
     Entity(pos),
-    hitbox(this, 3.f, 3.f)
+    hitbox(this, 3.f, 3.f, layers)
 {}
 
 void Projectile::processInput(sf::Event& event, Game& game) {}

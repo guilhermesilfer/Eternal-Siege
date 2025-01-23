@@ -8,7 +8,7 @@
 Enemy::Enemy() :
     shootTimer(0),
     shootInterval(2.0f),
-    hitbox(this, 10.f, 10.f)
+    hitbox(this, 10.f, 10.f, {'E'})
 {
     // sistema de spawn dos inimigos
 
@@ -52,7 +52,7 @@ void Enemy::update(float delta, Game& game) {
     // spawn dos projeteis
     shootTimer += clock.restart().asSeconds();
     if (shootTimer >= shootInterval) {
-        Projectile* projectile = new Projectile(position);
+        Projectile* projectile = new Projectile(position, {'P'});
         projectile->setTargetPosition(player->getX(), player->getY());
         projectile->direction = projectile->targetPosition - position;
         game.spawnEntity(projectile);

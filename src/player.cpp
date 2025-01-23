@@ -21,7 +21,7 @@ void Player::processInput(sf::Event& event, Game& game) {
 
         // spawn dos projeteis
         if (event.mouseButton.button == sf::Mouse::Left && ammo > 0) {
-            Projectile* projectile = new Projectile(position);
+            Projectile* projectile = new Projectile(position, {'E'});
             projectile->setTargetPosition(event.mouseButton.x, event.mouseButton.y);
             projectile->direction = projectile->targetPosition - position;
             std::cout << projectile->direction.x << projectile->direction.y << std::endl;
