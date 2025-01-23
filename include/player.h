@@ -7,15 +7,17 @@
 
 class Player : public Entity {
 public:
+    Player();
     void processInput(sf::Event& event, Game& game);
     void update(float delta, Game& game);
     void render(sf::RenderWindow& window, Game& game);
-    Player();
     int getAmmo();
+    int getHealth();
 
 private:
     sf::Vector2f targetPosition;
     float speedPlayer = 200.f;
+    int health;
     int ammo;
 };
 

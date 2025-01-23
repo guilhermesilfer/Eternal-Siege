@@ -8,6 +8,7 @@
 Player::Player() :
     Entity(sf::Vector2f(640, 400)),
     targetPosition(sf::Vector2f(640, 400)),
+    health(100),
     ammo(100)
 {}
 
@@ -48,6 +49,10 @@ void Player::render(sf::RenderWindow& window, Game& game) {
     playerShape.setFillColor(sf::Color::Green);
     playerShape.setPosition(getX(), getY());
     window.draw(playerShape);
+}
+
+int Player::getHealth() {
+    return health;
 }
 
 int Player::getAmmo() {
