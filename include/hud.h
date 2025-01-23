@@ -1,23 +1,21 @@
-#ifndef PLAYER_H
-#define PLAYER_H
+#ifndef HUD_H
+#define HUD_H
 
 #include <SFML/Graphics.hpp>
 #include "entity.h"
 #include "game.h"
 
-class Player : public Entity {
+class Hud : public Entity {
 public:
+    Hud();
     void processInput(sf::Event& event, Game& game);
     void update(float delta, Game& game);
     void render(sf::RenderWindow& window, Game& game);
-    Player();
-    int getAmmo();
 
 private:
-    sf::Vector2f targetPosition;
-    float speedPlayer = 200.f;
     int ammo;
 };
 
 #endif
+
 

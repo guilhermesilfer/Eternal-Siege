@@ -8,7 +8,7 @@
 Player::Player() :
     Entity(sf::Vector2f(640, 400)),
     targetPosition(sf::Vector2f(640, 400)),
-    projectiles(100)
+    ammo(100)
 {}
 
 void Player::processInput(sf::Event& event, Game& game) {
@@ -19,15 +19,13 @@ void Player::processInput(sf::Event& event, Game& game) {
         }
 
         // spawn dos projeteis
-        if (event.mouseButton.button == sf::Mouse::Left) {
-            if (projectiles > 0) {
-                Projectile* projectile = new Projectile(position);
-                projectile->setTargetPosition(event.mouseButton.x, event.mouseButton.y);
-                projectile->direction = projectile->targetPosition - position;
-                std::cout << projectile->direction.x << projectile->direction.y << std::endl;
-                game.spawnEntity(projectile);
-                projectiles--;
-            }
+        if (event.mouseButton.button == sf::Mouse::Left && ammo > 0) {
+            Projectile* projectile = new Projectile(position);
+            projectile->setTargetPosition(event.mouseButton.x, event.mouseButton.y);
+            projectile->direction = projectile->targetPosition - position;
+            std::cout << projectile->direction.x << projectile->direction.y << std::endl;
+            game.spawnEntity(projectile);
+            ammo--;
         }
     }
 }
@@ -50,5 +48,9 @@ void Player::render(sf::RenderWindow& window, Game& game) {
     playerShape.setFillColor(sf::Color::Green);
     playerShape.setPosition(getX(), getY());
     window.draw(playerShape);
+}
+
+int Player::getAmmo() {
+    return ammo;
 }
 

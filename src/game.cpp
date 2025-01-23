@@ -5,6 +5,7 @@
 #include "entity.h"
 #include "player.h"
 #include "enemy.h"
+#include "hud.h"
 
 Game::Game() :
     window(sf::VideoMode(1280, 800), "Eternal Siege"),
@@ -15,7 +16,10 @@ Game::Game() :
 {
     std::srand(static_cast<unsigned>(std::time(nullptr)));
     window.setFramerateLimit(60);
-    entities.push_back(player);
+    spawnEntity(player);
+
+    Hud* hud = new Hud();
+    spawnEntity(hud);
 }
 
 void Game::run() {
@@ -50,7 +54,7 @@ void Game::update(float delta) {
     spawnTimer += delta;
     if (spawnTimer >= spawnInterval) {
         Enemy* enemy = new Enemy();
-        entities.push_back(enemy);
+        spawnEntity(enemy);
         spawnTimer = 0;
     }
 
