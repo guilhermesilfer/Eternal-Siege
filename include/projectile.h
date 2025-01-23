@@ -11,10 +11,12 @@ public:
     void update(float delta, Game& game);
     void render(sf::RenderWindow& window, Game& game);
     Projectile(sf::Vector2f pos);
+    sf::Vector2f setTargetPosition(float x, float y);
+    sf::Vector2f direction;
+    sf::Vector2f targetPosition;
 
 private:
-    sf::Vector2f targetPosition;
-    float speed = 500.f;
+    float speedProjectile = 500.f;
 };
 
 #endif

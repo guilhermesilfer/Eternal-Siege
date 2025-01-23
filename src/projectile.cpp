@@ -9,14 +9,22 @@ Projectile::Projectile(sf::Vector2f pos) : Entity(pos) {}
 void Projectile::processInput(sf::Event& event, Game& game) {
 }
 
+//void Projectile::update(float delta, Game& game) {
+//    // movimentação do projetil
+//    sf::Vector2f direction = targetPosition - position;
+//    float distance = std::sqrt(direction.x * direction.x + direction.y * direction.y);
+//
+//    if (distance > 5) {
+//        direction /= distance;
+//        position += direction * speed * delta;
+//    }
+//}
 void Projectile::update(float delta, Game& game) {
-    // movimentação do projetil
-    sf::Vector2f direction = targetPosition - position;
-    float distance = std::sqrt(direction.x * direction.x + direction.y * direction.y);
+    direction /= std::sqrt(direction.x * direction.x + direction.y * direction.y);
+    position += direction * speedProjectile * delta;
 
-    if (distance > 1.0f) {
-        direction /= distance;
-        position += direction * speed * delta;
+    if (position.x < -100 || position.y < -100 || position.x > 1300 || position.y > 900) {
+        //game.removeProjectile(this);
     }
 }
 
@@ -27,3 +35,8 @@ void Projectile::render(sf::RenderWindow& window, Game& game) {
     window.draw(projectileShape);
 }
 
+sf::Vector2f Projectile::setTargetPosition(float x, float y) {
+    targetPosition.x = x;
+    targetPosition.y = y;
+    return targetPosition;
+}

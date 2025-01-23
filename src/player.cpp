@@ -2,6 +2,7 @@
 #include "projectile.h"
 #include "game.h"
 #include <iostream>
+#include <cstdlib>
 #include <cmath>
 
 Player::Player() {
@@ -16,8 +17,12 @@ void Player::processInput(sf::Event& event, Game& game) {
             targetPosition = target;
         }
 
+        // spawn dos projeteis
         if (event.mouseButton.button == sf::Mouse::Left) {
             Projectile* projectile = new Projectile(position);
+            projectile->setTargetPosition(event.mouseButton.x, event.mouseButton.y);
+            projectile->direction = projectile->targetPosition - position;
+            std::cout << projectile->direction.x << projectile->direction.y << std::endl;
             game.spawnEntity(projectile);
         }
     }
@@ -28,14 +33,16 @@ void Player::update(float delta, Game& game) {
     sf::Vector2f direction = targetPosition - position;
     float distance = std::sqrt(direction.x * direction.x + direction.y * direction.y);
 
-    if (distance > 1.0f) {
+    if (distance > 6.0f) {
         direction /= distance;
-        position += direction * speed * delta;
+        position += direction * speedPlayer * delta;
     }
 }
 
 void Player::render(sf::RenderWindow& window, Game& game) {
-    sf::CircleShape playerShape(10.f);
+    sf::CircleShape playerShape;
+    playerShape.setRadius(10);
+    playerShape.setOrigin(playerShape.getRadius(), playerShape.getRadius());
     playerShape.setFillColor(sf::Color::Green);
     playerShape.setPosition(getX(), getY());
     window.draw(playerShape);
