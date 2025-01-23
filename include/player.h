@@ -7,9 +7,10 @@
 
 class Player : public Entity {
 public:
-    void processInput(sf::Event& event);
+    void processInput(sf::Event& event, Game& game);
     void update(float delta, Game& game);
-    void render(sf::RenderWindow& window);
+    void render(sf::RenderWindow& window, Game& game);
+    Player();
 
 private:
     sf::Vector2f targetPosition;

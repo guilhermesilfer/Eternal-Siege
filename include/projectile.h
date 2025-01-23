@@ -1,19 +1,20 @@
-#ifndef ENEMY_H
-#define ENEMY_H
+#ifndef PROJECTILE_H
+#define PROJECTILE_H
 
 #include <SFML/Graphics.hpp>
 #include "entity.h"
 #include "game.h"
 
-class Enemy : public Entity {
+class Projectile : public Entity {
 public:
     void processInput(sf::Event& event, Game& game);
     void update(float delta, Game& game);
     void render(sf::RenderWindow& window, Game& game);
-    Enemy();
+    Projectile(sf::Vector2f pos);
 
 private:
-    float speed = 50.f;
+    sf::Vector2f targetPosition;
+    float speed = 500.f;
 };
 
 #endif

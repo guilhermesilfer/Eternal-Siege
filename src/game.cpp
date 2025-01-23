@@ -4,10 +4,11 @@
 #include "game.h"
 #include "entity.h"
 #include "player.h"
+#include "enemy.h"
 
 Game::Game() : window(sf::VideoMode(1280, 800), "Eternal Siege"),
                spawnTimer(0),
-               spawnInterval(0.5f)
+               spawnInterval(4.0f)
 {
     std::srand(static_cast<unsigned>(std::time(nullptr)));
     window.setFramerateLimit(60);
@@ -27,8 +28,18 @@ void Game::run() {
 void Game::processInput() {
     sf::Event event;
     while (window.pollEvent(event)) {
+        // processa o input das entidades
         for (Entity* entity : entities) {
-            entity->processInput(event);
+            std::cout << entities.size() << std::endl;
+            std::cout << entities.size() << std::endl;
+            std::cout << entities.size() << std::endl;
+            std::cout << entity << std::endl;
+//            std::cout << entity << std::endl;
+//            std::cout << entity << std::endl;
+//            std::cout << entity << std::endl;
+            entity->processInput(event, *this);
+            std::cout << "balls" << std::endl;
+            std::cout << "balls" << std::endl;
         }
 
         if (event.type == sf::Event::Closed) {
@@ -43,12 +54,15 @@ void Game::processInput() {
 }
 
 void Game::update(float delta) {
-    spawnTimer += delta;
-    if (spawnTimer >= spawnInterval) {
-        //spawnEnemy();
-        spawnTimer = 0;
-    }
+    // spawn dos inimigos
+    //spawnTimer += delta;
+    //if (spawnTimer >= spawnInterval) {
+    //    Enemy* enemy = new Enemy();
+    //    entities.push_back(enemy);
+    //    spawnTimer = 0;
+    //}
 
+    // update de todas as entidades
     for (Entity* entity : entities) {
         entity->update(delta, *this);
     }
@@ -58,17 +72,14 @@ void Game::render() {
     window.clear(sf::Color::White);
 
     for (Entity* entity : entities) {
-        entity->render(window);
+        entity->render(window, *this);
     }
 
-//for (const auto& enemy : enemies) {
-//    sf::CircleShape enemyShape(10.f);
-//    enemyShape.setFillColor(sf::Color::Red);
-//    enemyShape.setPosition(enemy.getX(), enemy.getY());
-//    window.draw(enemyShape);
-//}
-
     window.display();
+}
+
+void Game::spawnEntity(Entity* entity) {
+    entities.push_back(entity);
 }
 
 Player* Game::getPlayer() {

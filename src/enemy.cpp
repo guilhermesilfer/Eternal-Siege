@@ -2,8 +2,32 @@
 #include "game.h"
 #include "player.h"
 #include <cmath>
+#include <cstdlib>
 
-void Enemy::processInput(sf::Event& event) {}
+Enemy::Enemy() {
+    // sistema de spawn dos inimigos
+
+    int axisDice = std::rand() % 2;
+    int side = std::rand() % 2;
+
+    // horizontal
+    if (axisDice == 1) {
+        if (side == 1)
+            position.x = 1380;
+        else if (side == 0)
+            position.x = -100;
+        position.y = std::rand() % 900;
+    } // vertical
+    else if (axisDice == 0) {
+        if (side == 1)
+            position.y = -100;
+        if (side == 0)
+            position.y = 900;
+        position.x = std::rand() % 1380;
+    }
+}
+
+void Enemy::processInput(sf::Event& event, Game& game) {}
 
 void Enemy::update(float delta, Game& game) {
     Player* player = game.getPlayer();
@@ -12,6 +36,7 @@ void Enemy::update(float delta, Game& game) {
     float dx = targetX - position.x;
     float dy = targetY - position.y;
     float distance = std::sqrt(dx * dx + dy * dy);
+
     if (distance > 0.0f) {
         dx /= distance;
         dy /= distance;
@@ -20,4 +45,9 @@ void Enemy::update(float delta, Game& game) {
     }
 }
 
-void Enemy::render(sf::RenderWindow& window) {}
+void Enemy::render(sf::RenderWindow& window, Game& game) {
+    sf::CircleShape enemyShape(10.f);
+    enemyShape.setFillColor(sf::Color::Red);
+    enemyShape.setPosition(getX(), getY());
+    window.draw(enemyShape);
+}

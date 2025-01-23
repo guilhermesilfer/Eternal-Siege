@@ -11,6 +11,7 @@ public:
     Game();
     void run();
     Player* getPlayer();
+    void spawnEntity(Entity* entity);
 
 private:
     void processInput();
