@@ -7,7 +7,7 @@
 
 Player::Player() :
     Entity(sf::Vector2f(640, 400)),
-    hitbox(this, 10.f, 10.f, {'P'}),
+    hitbox(this, 10.f, 10.f, {'P', 'A'}),
     targetPosition(sf::Vector2f(640, 400)),
     health(100),
     ammo(100),
@@ -67,6 +67,11 @@ int Player::getAmmo() {
 
 int Player::getKills() {
     return kills;
+}
+
+int Player::gainAmmo(int amount) {
+    ammo += amount;
+    return ammo;
 }
 
 int Player::loseHealth(int amount) {

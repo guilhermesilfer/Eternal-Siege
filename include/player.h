@@ -15,6 +15,7 @@ public:
     int getAmmo();
     int getHealth();
     int getKills();
+    int gainAmmo(int amount);
     int loseHealth(int amount);
     int increaseKills(int amount);
     Hitbox hitbox;

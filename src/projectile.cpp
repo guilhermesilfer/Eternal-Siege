@@ -1,6 +1,7 @@
 #include "projectile.h"
 #include "player.h"
 #include "base.h"
+#include "ammo.h"
 #include "enemy.h"
 #include "game.h"
 #include <iostream>
@@ -43,6 +44,10 @@ void Projectile::update(float delta, Game& game) {
             player->increaseKills(1);
             game.despawnEntity(enemy);
             game.despawnEntity(this);
+            if (std::rand() % 2 == 0) {
+                Ammo* ammo = new Ammo(position);
+                game.spawnEntity(ammo);
+            }
         }
     }
 }
