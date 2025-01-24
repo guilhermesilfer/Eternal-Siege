@@ -35,6 +35,7 @@ Enemy::Enemy() :
 void Enemy::processInput(sf::Event& event, Game& game) {}
 
 void Enemy::update(float delta, Game& game) {
+    // movimentação dos inimigos
     Player* player = game.getPlayer();
     int targetX = player->getX();
     int targetY = player->getY();
@@ -59,10 +60,12 @@ void Enemy::update(float delta, Game& game) {
         shootTimer = 0;
     }
 
+    // checa colisão do player
     if (player->hitbox.collided(this->hitbox)) {
         player->loseHealth(10);
         game.despawnEntity(this);
     }
+    // checa colisão da base
     Base* base = game.getBase();
     if (base->hitbox.collided(this->hitbox)) {
         base->loseHealth(10);
@@ -71,11 +74,13 @@ void Enemy::update(float delta, Game& game) {
 }
 
 void Enemy::render(sf::RenderWindow& window, Game& game) {
+    // renderização do inimigo
     sf::CircleShape enemyShape;
     enemyShape.setRadius(10);
     enemyShape.setOrigin(enemyShape.getRadius(), enemyShape.getRadius());
     enemyShape.setFillColor(sf::Color::Red);
     enemyShape.setPosition(getX(), getY());
     window.draw(enemyShape);
-    hitbox.debugRender(window);
+    // debug das hitboxes
+    //hitbox.debugRender(window);
 }

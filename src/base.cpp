@@ -14,6 +14,7 @@ void Base::processInput(sf::Event& event, Game& game) {}
 void Base::update(float delta, Game& game) {}
 
 void Base::render(sf::RenderWindow& window, Game& game) {
+    // renderiza a base
     sf::RectangleShape baseShape;
     baseShape.setSize(sf::Vector2f(500, 250));
     baseShape.setOrigin(sf::Vector2f(250, 125));

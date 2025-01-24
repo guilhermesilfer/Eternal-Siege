@@ -19,6 +19,7 @@ Ammo::Ammo(sf::Vector2f pos) :
 void Ammo::processInput(sf::Event& event, Game& game) {}
 
 void Ammo::update(float delta, Game& game) {
+    // checa se houve colisão
     Player* player = game.getPlayer();
     if (player->hitbox.collided(this->hitbox)) {
         player->gainAmmo(5);
@@ -26,6 +27,7 @@ void Ammo::update(float delta, Game& game) {
         return;
     }
 
+    // temporizador da caixa de munição
     float clockDelta = clock.restart().asSeconds();
     lifeTimer += clockDelta;
     if (lifeTimer >= maxLifetime / 2.0) {

@@ -8,6 +8,7 @@
 #include "hud.h"
 #include "base.h"
 
+// função para o antialising
 sf::ContextSettings Game::createSettings() {
     sf::ContextSettings settings;
     settings.antialiasingLevel = 8.0;
@@ -34,6 +35,7 @@ Game::Game() :
     spawnEntity(player);
 }
 
+// game loop
 void Game::run() {
     while (window.isOpen()) {
         float delta = clock.restart().asSeconds();
@@ -79,6 +81,7 @@ void Game::update(float delta) {
 void Game::render() {
     window.clear(sf::Color::White);
 
+    // renderiza todas as entidades
     for (Entity* entity : std::vector<Entity*>(entities)) {
         entity->render(window, *this);
     }

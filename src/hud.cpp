@@ -20,13 +20,7 @@ void Hud::update(float delta, Game& game) {
 }
 
 void Hud::render(sf::RenderWindow& window, Game& game) {
-    //sf::RectangleShape rectangleShape;
-    //rectangleShape.setSize(sf::Vector2f(270, 100));
-    //rectangleShape.setOrigin(270, 0);
-    //rectangleShape.setFillColor(sf::Color::Red);
-    //rectangleShape.setPosition(getX(), getY());
-    //window.draw(rectangleShape);
-
+    // carrega a fonte
     sf::Font font;
     if (!font.loadFromFile("fonts/Pixelon.ttf")) {
         exit(1);
@@ -80,8 +74,8 @@ void Hud::render(sf::RenderWindow& window, Game& game) {
     totalKills.setPosition(getX() + 10, getY() + 80);
     window.draw(totalKills);
 
+    // desenha o game over
     if (health <= 0 || baseHealth <= 0) {
-        // desenha o game over
         sf::Text gameOver;
         gameOver.setFont(font);
         gameOver.setString("GAME OVER");

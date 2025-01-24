@@ -20,6 +20,7 @@ float Hitbox::centerY() {
     return parent->getY();
 }
 
+// checa se colidiu
 bool Hitbox::collided(Hitbox& h) {
     for (auto l1 : layers) {
         for (auto l2 : h.layers) {
@@ -32,6 +33,7 @@ bool Hitbox::collided(Hitbox& h) {
     return false;
 }
 
+// função para debugar as hitboxes
 void Hitbox::debugRender(sf::RenderWindow& window) {
     sf::RectangleShape box;
     box.setSize(sf::Vector2f(width, height));

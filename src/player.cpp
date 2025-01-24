@@ -15,6 +15,7 @@ Player::Player() :
 {}
 
 void Player::processInput(sf::Event& event, Game& game) {
+    // detecta o mouse
     if (event.type == sf::Event::MouseButtonPressed) {
         // para movimentar o player
         if (event.mouseButton.button == sf::Mouse::Right) {

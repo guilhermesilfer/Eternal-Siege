@@ -1,25 +1,27 @@
 # Eternal-Siege
 Eternal Siege é um jogo de defesa de base feito para a matéria de Linguagem de Programação I
 
-**VÍDEO TESTANDO: https://drive.google.com/file/d/1z3YL1lEqxCNNbNjLUJCVVr4L2vdfzbo5/view?usp=sharing**
+**VÍDEO TESTANDO: https://drive.google.com/file/d/1hCdsMtC-DHb0Gz9zXQqlXNIQWMxIO1rT/view?usp=sharing**
 
 - **SFML 2.6**
 
 - **Compilador C++** (g++)
 
-- **make** (opcional)
+- **make**
 
 
 ## Compilação
-
-### Utilizando make
+### make
 ```
 make
 ```
 
-### Ou manualmente
+## Execução
+### make
 ```
-g++ -c main.cpp game.cpp player.cpp enemy.cpp
-g++ main.o game.o player.o enemy.o -o sfml-app -lsfml-graphics -lsfml-window -lsfml-system
+make run
+```
+### ou
+```
 ./sfml-app
 ```
