@@ -22,7 +22,7 @@ public:
 
 private:
     sf::Vector2f targetPosition;
-    float speedPlayer = 200.f;
+    float speedPlayer = 260.f;
     int health;
     int ammo;
     int kills;

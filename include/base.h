@@ -12,6 +12,7 @@ public:
     void processInput(sf::Event& event, Game& game);
     void update(float delta, Game& game);
     void render(sf::RenderWindow& window, Game& game);
+    int getHealth();
     int loseHealth(int amount);
     Hitbox hitbox;
 

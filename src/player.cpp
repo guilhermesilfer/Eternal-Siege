@@ -7,7 +7,7 @@
 
 Player::Player() :
     Entity(sf::Vector2f(640, 400)),
-    hitbox(this, 10.f, 10.f, {'P', 'A'}),
+    hitbox(this, 15.f, 15.f, {'P', 'A', 'X'}),
     targetPosition(sf::Vector2f(640, 400)),
     health(100),
     ammo(100),

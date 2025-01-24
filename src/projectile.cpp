@@ -44,7 +44,7 @@ void Projectile::update(float delta, Game& game) {
             player->increaseKills(1);
             game.despawnEntity(enemy);
             game.despawnEntity(this);
-            if (std::rand() % 2 == 0) {
+            if (std::rand() % 4 != 0) {
                 Ammo* ammo = new Ammo(position);
                 game.spawnEntity(ammo);
             }

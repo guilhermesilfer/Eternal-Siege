@@ -5,7 +5,7 @@
 
 Base::Base() :
     Entity(sf::Vector2f(640, 400)),
-    hitbox(this, 250.f, 500.f, {'P'}),
+    hitbox(this, 270.f, 520.f, {'P', 'Y'}),
     health(100)
 {}
 
@@ -22,6 +22,10 @@ void Base::render(sf::RenderWindow& window, Game& game) {
     baseShape.setOutlineThickness(10);
     baseShape.setPosition(getX(), getY());
     window.draw(baseShape);
+}
+
+int Base::getHealth() {
+    return health;
 }
 
 int Base::loseHealth(int amount) {

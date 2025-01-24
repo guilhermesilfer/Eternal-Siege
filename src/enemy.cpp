@@ -1,6 +1,7 @@
 #include "enemy.h"
 #include "game.h"
 #include "player.h"
+#include "base.h"
 #include "projectile.h"
 #include <cmath>
 #include <cstdlib>
@@ -8,7 +9,7 @@
 Enemy::Enemy() :
     shootTimer(0),
     shootInterval(2.0f),
-    hitbox(this, 10.f, 10.f, {'E'})
+    hitbox(this, 15.f, 15.f, {'E', 'X', 'Y'})
 {
     // sistema de spawn dos inimigos
 
@@ -57,6 +58,16 @@ void Enemy::update(float delta, Game& game) {
         projectile->direction = projectile->targetPosition - position;
         game.spawnEntity(projectile);
         shootTimer = 0;
+    }
+
+    if (player->hitbox.collided(this->hitbox)) {
+        player->loseHealth(10);
+        game.despawnEntity(this);
+    }
+    Base* base = game.getBase();
+    if (base->hitbox.collided(this->hitbox)) {
+        base->loseHealth(10);
+        game.despawnEntity(this);
     }
 }
 

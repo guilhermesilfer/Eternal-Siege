@@ -23,9 +23,9 @@ Game::Game() :
     Hud* hud = new Hud();
     spawnEntity(hud);
 
-    spawnEntity(player);
-
     spawnEntity(base);
+
+    spawnEntity(player);
 }
 
 void Game::run() {

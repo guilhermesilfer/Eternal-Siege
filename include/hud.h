@@ -13,8 +13,10 @@ public:
     void render(sf::RenderWindow& window, Game& game);
 
 private:
-    int ammo;
+    int baseHealth;
     int health;
+    int ammo;
+    int kills;
 };
 
 #endif
