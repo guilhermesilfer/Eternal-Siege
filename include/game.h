@@ -20,6 +20,7 @@ public:
     std::vector<Enemy*> getEnemies();
 
 private:
+    static sf::ContextSettings createSettings();
     void processInput();
     void update(float delta);
     void render();

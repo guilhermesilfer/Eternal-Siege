@@ -12,7 +12,6 @@ Enemy::Enemy() :
     hitbox(this, 15.f, 15.f, {'E', 'X', 'Y'})
 {
     // sistema de spawn dos inimigos
-
     int axisDice = std::rand() % 2;
     int side = std::rand() % 2;
 

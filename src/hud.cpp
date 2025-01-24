@@ -80,5 +80,16 @@ void Hud::render(sf::RenderWindow& window, Game& game) {
     totalKills.setPosition(getX() + 10, getY() + 80);
     window.draw(totalKills);
 
+    if (health <= 0 || baseHealth <= 0) {
+        // desenha o game over
+        sf::Text gameOver;
+        gameOver.setFont(font);
+        gameOver.setString("GAME OVER");
+        gameOver.setCharacterSize(100);
+        gameOver.setFillColor(sf::Color::Black);
+        gameOver.setOrigin(0, 0);
+        gameOver.setPosition(400, 300);
+        window.draw(gameOver);
+    }
 }
 

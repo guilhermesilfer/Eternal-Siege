@@ -8,8 +8,14 @@
 #include "hud.h"
 #include "base.h"
 
+sf::ContextSettings Game::createSettings() {
+    sf::ContextSettings settings;
+    settings.antialiasingLevel = 8.0;
+    return settings;
+}
+
 Game::Game() :
-    window(sf::VideoMode(1280, 800), "Eternal Siege"),
+    window(sf::VideoMode(1280, 800), "Eternal Siege", sf::Style::Default, createSettings()),
     entities(),
     player(new Player()),
     base(new Base()),
