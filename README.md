@@ -5,9 +5,9 @@ Eternal Siege é um jogo de defesa de base feito para a matéria de Linguagem de
 
 - **SFML 2.6**
 
-- **Compilador C++** (g++)
+- **g++ (c++11)**
 
-- **make**
+- **make 4.4.1**
 
 
 ## Compilação
