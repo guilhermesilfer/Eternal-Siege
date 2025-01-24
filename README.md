@@ -23,5 +23,5 @@ make run
 ```
 ### ou
 ```
-./sfml-app
+./bin/Eternal_Siege
 ```
